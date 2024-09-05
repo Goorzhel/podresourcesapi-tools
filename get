@@ -1,0 +1,13 @@
+#!/bin/sh
+# Output resource handles as CSV.
+
+[ -x _out/client ] || go build -- -o _out/client ./cmd/client
+
+echo 'namespace,name,container,device,device_id'
+
+sudo _out/client \
+| jq -r '.pod_resources
+  | map(
+      select(.containers[].devices)
+      | "\(.namespace),\(.name),\(.containers[].name),\(.containers[].devices[].resource_name),\(.containers[].devices[].device_ids[])")
+      | sort[]'
