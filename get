@@ -1,7 +1,7 @@
 #!/bin/sh
 # Output resource handles as CSV.
 
-[ -x _out/client ] || go build -- -o _out/client ./cmd/client
+make -s client
 
 echo 'namespace,name,container,device,device_id'
 
