@@ -10,4 +10,4 @@ sudo _out/client \
   | map(
       select(.containers[].devices)
       | "\(.namespace),\(.name),\(.containers[].name),\(.containers[].devices[].resource_name),\(.containers[].devices[].device_ids[])")
-      | sort[]'
+  | sort[]'
